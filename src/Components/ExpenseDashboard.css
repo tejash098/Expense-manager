@@ -1,17 +1,86 @@
-.container { max-width: 1000px; margin: auto; padding: 20px; font-family: Arial; }
-.title { text-align: center; margin-bottom: 20px; }
-.summary-boxes { display: flex; gap: 15px; margin-bottom: 25px; }
-.box { flex: 1; background: #f1f1f1; padding: 15px; border-radius: 8px; text-align: center; }
-.box h2 { margin-top: 10px; }
-.red { color: red; }
-.yellow { color: orange; }
-.green { color: green; }
-.layout { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; }
-.form { background: #f9f9f9; padding: 15px; border-radius: 8px; display: flex; flex-direction: column; gap: 10px; }
-.form input, .form select { padding: 8px; border: 1px solid #ccc; border-radius: 5px; }
-.table-box { background: #f9f9f9; padding: 15px; border-radius: 8px; }
-table { width: 100%; border-collapse: collapse; }
-th, td { padding: 10px; border-bottom: 1px solid #ddd; }
-button { padding: 8px 10px; cursor: pointer; }
-.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: flex; justify-content: center; align-items: center; }
-.modal { background: white; padding: 20px; border-radius: 8px; width: 300px; text-align: center; }
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial;
+}
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.summary-boxes {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.box {
+  flex: 1;
+  background: #f1f1f1;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+.box h2 {
+  margin-top: 10px;
+}
+.red {
+  color: red;
+}
+.yellow {
+  color: orange;
+}
+.green {
+  color: green;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
+.form {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.form input,
+.form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.table-box {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+button {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
