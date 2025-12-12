@@ -1,86 +1,201 @@
+:root {
+  --primary: #4f46e5;
+  --primary-light: #6366f1;
+  --bg-light: #f8f9ff;
+  --text-dark: #1f1f1f;
+
+  --green: #10b981;
+  --yellow: #f59e0b;
+  --red: #ef4444;
+
+  --radius: 10px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  background: var(--bg-light);
+  font-family: "Inter", Arial, sans-serif;
+  padding: 10px;
+  color: var(--text-dark);
+}
+
 .container {
   max-width: 1000px;
   margin: auto;
   padding: 20px;
-  font-family: Arial;
 }
+
 .title {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--primary);
 }
+
 .summary-boxes {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
   margin-bottom: 25px;
 }
+
 .box {
   flex: 1;
-  background: #f1f1f1;
-  padding: 15px;
-  border-radius: 8px;
+  min-width: 180px;
+  background: white;
+  padding: 18px;
+  border-radius: var(--radius);
   text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+.box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.box p {
+  font-size: 14px;
+  color: #555;
+}
+
 .box h2 {
-  margin-top: 10px;
+  margin-top: 8px;
 }
+
 .red {
-  color: red;
+  color: var(--red);
 }
 .yellow {
-  color: orange;
+  color: var(--yellow);
 }
 .green {
-  color: green;
+  color: var(--green);
 }
+
 .layout {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 20px;
 }
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 .form {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
+  background: white;
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
+
 .form input,
 .form select {
-  padding: 8px;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease;
 }
+
+.form input:focus,
+.form select:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.form button {
+  background: var(--primary);
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.form button:hover {
+  background: var(--primary-light);
+}
+
 .table-box {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
+  background: white;
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
 }
-th,
+
+th {
+  background: var(--primary);
+  color: white;
+  padding: 10px;
+  font-weight: 500;
+}
+
 td {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eee;
 }
+
+tr:hover {
+  background: #f3f4ff;
+  transition: background 0.2s ease;
+}
+
 button {
-  padding: 8px 10px;
+  padding: 7px 10px;
   cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  transition: opacity 0.2s ease;
 }
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:nth-child(1) {
+  background: var(--primary);
+  color: white;
+}
+
 .modal-bg {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .modal {
   background: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
-  text-align: center;
+  padding: 25px;
+  border-radius: var(--radius);
+  width: 320px;
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
