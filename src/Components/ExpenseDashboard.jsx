@@ -3,13 +3,18 @@ import "./ExpenseDashboard.css";
 import { ExpenseData } from "./ExpenseData";
 
 const ExpenseDashboard = () => {
-  const [data, setData] = useState(ExpenseData);
+  const [data, setData] = useState(() => {
+    const saved = localStorage.getItem("expenses");
+    return saved ? JSON.parse(saved) : ExpenseData;
+  });
+
   const [form, setForm] = useState({
     description: "",
     amount: "",
     category: "",
     date: "",
   });
+
   const [viewItem, setViewItem] = useState(null);
 
   const total = data.reduce((prev, curr) => prev + Number(curr.Amount), 0);
@@ -19,7 +24,6 @@ const ExpenseDashboard = () => {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.description || !form.amount || !form.category || !form.date)
@@ -32,7 +36,10 @@ const ExpenseDashboard = () => {
       Date: form.date,
     };
 
-    setData([...data, newItem]);
+    const updated = [...data, newItem];
+    setData(updated);
+    localStorage.setItem("expenses", JSON.stringify(updated));
+
     setForm({ description: "", amount: "", category: "", date: "" });
   };
 
