@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./ExpenseDashboard.css";
-import { ExpenseData } from "./ExpenseData";
 
 const ExpenseDashboard = () => {
   const [data, setData] = useState(() => {
     const saved = localStorage.getItem("expenses");
-    return saved ? JSON.parse(saved) : ExpenseData;
+    return saved ? JSON.parse(saved) : [];
   });
 
   const [form, setForm] = useState({
@@ -17,13 +16,25 @@ const ExpenseDashboard = () => {
 
   const [viewItem, setViewItem] = useState(null);
 
-  const total = data.reduce((prev, curr) => prev + Number(curr.Amount), 0);
-  const budget = 1500;
+  const [budget, setBudget] = useState(() => {
+    const saved = localStorage.getItem("budget");
+    return saved ? Number(saved) : 1500;
+  });
+
+  const [editingBudget, setEditingBudget] = useState(false);
+  const [budgetInput, setBudgetInput] = useState(budget);
+
+  const total = data.reduce((sum, item) => {
+    const amount = Number(item.Amount) || 0;
+    return item.Category === "Income" ? sum - amount : sum + amount;
+  }, 0);
+
   const amountLeft = budget - total;
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.description || !form.amount || !form.category || !form.date)
@@ -43,6 +54,26 @@ const ExpenseDashboard = () => {
     setForm({ description: "", amount: "", category: "", date: "" });
   };
 
+  const startEditBudget = () => {
+    setBudgetInput(budget);
+    setEditingBudget(true);
+  };
+
+  const saveBudget = () => {
+    const value = Number(budgetInput);
+    if (!isNaN(value) && value >= 0) {
+      setBudget(value);
+      localStorage.setItem("budget", value);
+    }
+    setEditingBudget(false);
+  };
+
+  const handleDelete = (item) => {
+    const updated = data.filter((i) => i !== item);
+    setData(updated);
+    localStorage.setItem("expenses", JSON.stringify(updated));
+  };
+
   return (
     <div className="container">
       <h1 className="title">Expense Dashboard</h1>
@@ -52,10 +83,27 @@ const ExpenseDashboard = () => {
           <p>Total Expense</p>
           <h2>${total.toFixed(2)}</h2>
         </div>
+
         <div className="box">
           <p>Budget</p>
-          <h2>${budget.toFixed(2)}</h2>
+
+          {!editingBudget ? (
+            <>
+              <h2>${budget.toFixed(2)}</h2>
+              <button onClick={startEditBudget}>Edit</button>
+            </>
+          ) : (
+            <>
+              <input
+                type="number"
+                value={budgetInput}
+                onChange={(e) => setBudgetInput(e.target.value)}
+              />
+              <button onClick={saveBudget}>OK</button>
+            </>
+          )}
         </div>
+
         <div className="box">
           <p>Amount Left</p>
           <h2
@@ -88,7 +136,11 @@ const ExpenseDashboard = () => {
           />
 
           <label>Category</label>
-          <select name="category" value={form.category} onChange={handleChange}>
+          <select
+            name="category"
+            value={form.category}
+            onChange={handleChange}
+          >
             <option value="">Select</option>
             <option>Income</option>
             <option>Food & Dining</option>
@@ -129,10 +181,11 @@ const ExpenseDashboard = () => {
                   <td>{item.Category}</td>
                   <td>
                     {item.Category === "Income" ? "+" : "-"}
-                    {item.Amount}
+                    {Math.abs(item.Amount)}
                   </td>
-                  <td>
+                  <td className="action-buttons">
                     <button onClick={() => setViewItem(item)}>View</button>
+                    <button onClick={() => handleDelete(item)}>Delete</button>
                   </td>
                 </tr>
               ))}

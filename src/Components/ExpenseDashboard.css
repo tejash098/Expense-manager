@@ -3,11 +3,9 @@
   --primary-light: #6366f1;
   --bg-light: #f8f9ff;
   --text-dark: #1f1f1f;
-
   --green: #10b981;
   --yellow: #f59e0b;
   --red: #ef4444;
-
   --radius: 10px;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
@@ -65,12 +63,28 @@ body {
   margin-top: 8px;
 }
 
+.box button {
+  margin-top: 10px;
+  background: var(--primary);
+  color: white;
+}
+
+.box input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: var(--radius);
+  border: 1px solid #ccc;
+}
+
 .red {
   color: var(--red);
 }
+
 .yellow {
   color: var(--yellow);
 }
+
 .green {
   color: var(--green);
 }
@@ -102,7 +116,6 @@ body {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: var(--radius);
-  transition: border-color 0.2s ease;
 }
 
 .form input:focus,
@@ -118,7 +131,6 @@ body {
   padding: 10px;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: background 0.2s ease;
 }
 
 .form button:hover {
@@ -151,7 +163,6 @@ td {
 
 tr:hover {
   background: #f3f4ff;
-  transition: background 0.2s ease;
 }
 
 button {
@@ -159,15 +170,20 @@ button {
   cursor: pointer;
   border-radius: 6px;
   border: none;
-  transition: opacity 0.2s ease;
 }
 
-button:hover {
-  opacity: 0.8;
+.action-buttons {
+  display: flex;
+  gap: 8px;
 }
 
-button:nth-child(1) {
+.table-box button:first-child {
   background: var(--primary);
+  color: white;
+}
+
+.table-box button:last-child {
+  background: var(--red);
   color: white;
 }
 
