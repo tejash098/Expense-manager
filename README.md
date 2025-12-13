@@ -1,11 +1,6 @@
-Here is a clean, professional **README.md** for your Expense Dashboard React project 👇
-You can copy and paste this directly into a new file named **README.md** in your project root.
+# Expense Dashboard
 
----
-
-## 📌 Expense Dashboard – React App
-
-Expense Dashboard is a simple React-based personal finance tracker that allows users to record expenses, categorize transactions, track their monthly spending, and view budget insights.
+A simple and interactive Expense Dashboard application built using **React**. Users can add expenses, view transaction history, and track their budget.
 
 ---
 
@@ -36,11 +31,13 @@ Expense Dashboard is a simple React-based personal finance tracker that allows u
 
 ```
 src/
- ├── ExpenseDashboard.js
- ├── ExpenseDashboard.css
- ├── ExpenseData.js
- ├── index.js
- └── App.js
+ ├── Components/
+ │    ├── ExpenseDashboard.jsx
+ │    ├── ExpenseDashboard.css
+ │    └── ExpenseData.jsx
+ ├── App.jsx
+ ├── main.jsx
+ └── index.css
 ```
 
 ---
@@ -87,21 +84,5 @@ http://localhost:3000/
 | > 300       | Green  |
 | 0 – 300     | Yellow |
 | < 0         | Red    |
-
----
-
-### 🔮 Future Enhancements (Optional)
-
-* Add delete and edit transaction options
-* Add authentication (login system)
-* Add charts for visual insights
-* Store data in local storage or database
-* Export reports to Excel/PDF
-
----
-
-### 📝 License
-
-This project is free to use for learning and development.
 
 ---
