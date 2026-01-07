@@ -81,7 +81,7 @@ const ExpenseDashboard = () => {
       <div className="summary-boxes">
         <div className="box">
           <p>Total Expense</p>
-          <h2>${total.toFixed(2)}</h2>
+          <h2>₹{total.toFixed(2)}</h2>
         </div>
 
         <div className="box">
@@ -89,7 +89,7 @@ const ExpenseDashboard = () => {
 
           {!editingBudget ? (
             <>
-              <h2>${budget.toFixed(2)}</h2>
+              <h2>₹{budget.toFixed(2)}</h2>
               <button onClick={startEditBudget}>Edit</button>
             </>
           ) : (
@@ -111,7 +111,7 @@ const ExpenseDashboard = () => {
               amountLeft < 0 ? "red" : amountLeft < 300 ? "yellow" : "green"
             }
           >
-            ${amountLeft.toFixed(2)}
+            ₹{amountLeft.toFixed(2)}
           </h2>
         </div>
       </div>
